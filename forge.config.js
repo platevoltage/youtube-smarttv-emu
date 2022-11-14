@@ -14,7 +14,14 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {},
+      platforms: ['linux'],
+      config: {        
+        options: {
+          bin: "YouTube",
+          maintainer: 'YOU',
+          homepage: 'https://you home page',
+        }
+      },
     },
     {
       name: '@electron-forge/maker-rpm',
