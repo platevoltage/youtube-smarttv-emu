@@ -1,12 +1,12 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 
-const createMainPopup = () => {
+const createWindow = () => {
   const win = new BrowserWindow({
     width: 1280,
     height: 720,
     title: "Youtube",
-    // fullscreen: true,
+    fullscreen: true,
     // visualEffectState: "active",
     // vibrancy: 'sidebar',
     // resizable: false,
@@ -37,7 +37,7 @@ const createMainPopup = () => {
 
 app.whenReady().then(async () => {
 
-  createMainPopup();
+  createWindow();
   // note: your contextMenu, Tooltip and Title code will go here!
 })
 

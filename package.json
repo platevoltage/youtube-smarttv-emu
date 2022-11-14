@@ -32,7 +32,8 @@
       "output": "out"
     },
     "linux": {
-      "category": "AudioVideo"
+      "category": "AudioVideo",
+      "publish": ["github"]
     }
 
   }
