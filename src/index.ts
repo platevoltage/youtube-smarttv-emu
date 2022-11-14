@@ -3,16 +3,17 @@ import * as path from 'path';
 
 const createMainPopup = () => {
   const win = new BrowserWindow({
-    width: 550,
-    height: 500,
-    visualEffectState: "active",
-    vibrancy: 'sidebar',
-    resizable: false,
-    maximizable: false,
-    movable: false,
+    width: 1280,
+    height: 720,
+    // fullscreen: true,
+    // visualEffectState: "active",
+    // vibrancy: 'sidebar',
+    // resizable: false,
+    // maximizable: false,
+    // movable: false,
     // titleBarStyle: "hidden",
-    useContentSize: true,
-    frame: false,
+    // useContentSize: true,
+    // frame: false,
     // show: false,
     webPreferences: {
       nodeIntegration: false,
@@ -21,7 +22,9 @@ const createMainPopup = () => {
     }
   });
 
-  win.loadURL('https://youtube.com');
+  win.loadURL('https://youtube.com/tv', {
+    userAgent: "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/63.0.3239.84 TV Safari/537.36"
+  });
   return win
       
 };
