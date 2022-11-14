@@ -5,6 +5,7 @@ const createMainPopup = () => {
   const win = new BrowserWindow({
     width: 1280,
     height: 720,
+    title: "Youtube",
     // fullscreen: true,
     // visualEffectState: "active",
     // vibrancy: 'sidebar',
@@ -16,14 +17,17 @@ const createMainPopup = () => {
     // frame: false,
     // show: false,
     webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
+      // nodeIntegration: false,
+      // contextIsolation: true,
       // preload: path.join(__dirname, 'preload.js')
     }
   });
 
   win.loadURL('https://youtube.com/tv', {
     userAgent: "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/63.0.3239.84 TV Safari/537.36"
+  });
+  win.on('page-title-updated', function(e) {
+    e.preventDefault()
   });
   return win
       
