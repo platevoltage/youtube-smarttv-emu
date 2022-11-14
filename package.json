@@ -1,0 +1,33 @@
+{
+  "name": "youtube-smarttv-emu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && electron-forge start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platevoltage/youtube-smarttv-emu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/platevoltage/youtube-smarttv-emu/issues"
+  },
+  "homepage": "https://github.com/platevoltage/youtube-smarttv-emu#readme",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.1",
+    "@electron-forge/maker-deb": "^6.0.1",
+    "@electron-forge/maker-rpm": "^6.0.1",
+    "@electron-forge/maker-squirrel": "^6.0.1",
+    "@electron-forge/maker-zip": "^6.0.1",
+    "electron": "^21.2.2",
+    "electron-is-dev": "^2.0.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}
+  
