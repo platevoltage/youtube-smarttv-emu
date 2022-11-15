@@ -31,9 +31,16 @@
     "directories": {
       "output": "out"
     },
+    "win": {
+      "icon": "./youtube.png"
+    },
     "linux": {
       "category": "AudioVideo",
-      "publish": ["github"]
+      "publish": ["github"],
+      "icon": "./youtube.png"
+    },
+    "mac": {
+      "icon": "./youtube.icns"
     }
 
   }
