@@ -1,6 +1,6 @@
 {
   "name": "youtube-smarttv-emu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "Garrett Corbin <jgarrettcorbin@gmail.com> (https://jgarrettcorbin.com)",
   "main": "dist/index.js",
@@ -36,8 +36,7 @@
     },
     "linux": {
       "category": "AudioVideo",
-      "publish": ["github"],
-      "icon": "./youtube.png"
+      "publish": ["github"]
     },
     "mac": {
       "icon": "./youtube.icns"

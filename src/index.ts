@@ -43,6 +43,7 @@ app.whenReady().then(async () => {
   const win = createWindow();
   win.webContents.executeJavaScript('console.log("test")')
   // note: your contextMenu, Tooltip and Title code will go here!
+  
 })
 
 
