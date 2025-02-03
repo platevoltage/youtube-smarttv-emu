@@ -42,7 +42,7 @@ const createWindow = () => {
 
 
 
-app.whenReady().then(async () => {
+app.on("ready", async () => {
   await components.whenReady();
   console.log('components ready:', components.status());
   const win = createWindow();
