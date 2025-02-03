@@ -1,13 +1,13 @@
 {
   "name": "youtube-smarttv-emu",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "",
   "author": "Garrett Corbin <jgarrettcorbin@gmail.com> (https://jgarrettcorbin.com)",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc --skipLibCheck || true && electron .",
-    "make": "tsc && electron-builder -mwl --linux deb rpm"
+    "make:linux": "tsc && electron-builder -l --x64 --linux deb rpm"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,9 @@
   "homepage": "https://github.com/platevoltage/youtube-smarttv-emu#readme",
   "devDependencies": {
     "deb": "^0.2.1",
-    "electron": "^21.2.2",
-    "electron-is-dev": "^2.0.0"
+    "electron": "github:castlabs/electron-releases#v34.0.2+wvcus",
+    "electron-builder": "^25.1.8",
+    "electron-is-dev": "^3.0.1"
   },
   "dependencies": {
     "typescript": "^5.7.3"
@@ -38,10 +39,16 @@
       "category": "AudioVideo",
       "publish": [
         "github"
+      ],
+      "executableArgs": [
+        "--no-sandbox"
       ]
     },
     "mac": {
       "icon": "./youtube.icns"
+    },
+    "electronDownload": {
+      "mirror": "https://github.com/castlabs/electron-releases/releases/download/v"
     }
   }
 }

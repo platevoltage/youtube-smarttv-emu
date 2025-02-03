@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, components } from 'electron';
 import * as path from 'path';
 
 const createWindow = () => {
@@ -6,7 +6,7 @@ const createWindow = () => {
     width: 1280,
     height: 720,
     title: "Youtube",
-    // fullscreen: true,
+    fullscreen: true,
     // kiosk: true,
     // visualEffectState: "active",
     // vibrancy: 'sidebar',
@@ -20,11 +20,12 @@ const createWindow = () => {
     webPreferences: {
       // nodeIntegration: false,
       // contextIsolation: true,
+      sandbox: false,
       preload: path.join(__dirname, 'extensionScript.js')
     }
   });
 
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools();
 
   win.loadURL('https://youtube.com/tv', {
     // userAgent: "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/107.0.3239.84 TV Safari/537.36"
@@ -42,7 +43,8 @@ const createWindow = () => {
 
 
 app.whenReady().then(async () => {
-
+  await components.whenReady();
+  console.log('components ready:', components.status());
   const win = createWindow();
   win.webContents.executeJavaScript('console.log("test")')
   // note: your contextMenu, Tooltip and Title code will go here!
