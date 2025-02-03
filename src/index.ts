@@ -6,7 +6,7 @@ const createWindow = () => {
     width: 1280,
     height: 720,
     title: "Youtube",
-    fullscreen: true,
+    // fullscreen: true,
     // kiosk: true,
     // visualEffectState: "active",
     // vibrancy: 'sidebar',
@@ -24,16 +24,19 @@ const createWindow = () => {
     }
   });
 
+  win.webContents.openDevTools()
+
   win.loadURL('https://youtube.com/tv', {
-    userAgent: "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/107.0.3239.84 TV Safari/537.36"
+    // userAgent: "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/107.0.3239.84 TV Safari/537.36"
+    userAgent: "AppleCoreMedia/1.0.0.20L563 (Apple TV; U; CPU OS 16_5 like Mac OS X; en_us)"
   });
 
 
-  win.on('page-title-updated', function(e) {
+  win.on('page-title-updated', function (e) {
     e.preventDefault()
   });
   return win
-      
+
 };
 
 
@@ -43,7 +46,7 @@ app.whenReady().then(async () => {
   const win = createWindow();
   win.webContents.executeJavaScript('console.log("test")')
   // note: your contextMenu, Tooltip and Title code will go here!
-  
+
 })
 
 

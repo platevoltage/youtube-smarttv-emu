@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && electron .",
+    "start": "tsc --skipLibCheck || true && electron .",
     "make": "tsc && electron-builder -mwl --linux deb rpm"
   },
   "repository": {
@@ -19,12 +19,12 @@
   },
   "homepage": "https://github.com/platevoltage/youtube-smarttv-emu#readme",
   "devDependencies": {
-
     "deb": "^0.2.1",
     "electron": "^21.2.2",
     "electron-is-dev": "^2.0.0"
   },
   "dependencies": {
+    "typescript": "^5.7.3"
   },
   "build": {
     "appId": "com.example.app",
@@ -36,11 +36,12 @@
     },
     "linux": {
       "category": "AudioVideo",
-      "publish": ["github"]
+      "publish": [
+        "github"
+      ]
     },
     "mac": {
       "icon": "./youtube.icns"
     }
-
   }
 }
