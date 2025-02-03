@@ -7,7 +7,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc --skipLibCheck || true && electron .",
-    "make:linux": "tsc && electron-builder -l --x64 --linux deb rpm"
+    "sign-dev": "evs-vmp sign-pkg node_modules/electron/dist",
+    "make:linux": "tsc && electron-builder -l --x64 --linux deb rpm",
+    "make:windows": "tsc && electron-builder --w --x64",
+    "make:mac": "tsc && electron-builder --m --arm64"
   },
   "repository": {
     "type": "git",
@@ -49,6 +52,7 @@
     },
     "electronDownload": {
       "mirror": "https://github.com/castlabs/electron-releases/releases/download/v"
-    }
+    },
+    "afterSign": "sign.js"
   }
 }
