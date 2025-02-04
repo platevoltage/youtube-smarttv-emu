@@ -1,35 +1,24 @@
 import { app, BrowserWindow, components } from 'electron';
 import * as path from 'path';
 
-const createWindow = () => {
+function createWindow() {
   const win = new BrowserWindow({
     width: 1280,
     height: 720,
     title: "Youtube",
-    fullscreen: true,
-    // kiosk: true,
-    // visualEffectState: "active",
-    // vibrancy: 'sidebar',
-    // resizable: false,
-    // maximizable: false,
-    // movable: false,
-    // titleBarStyle: "hidden",
-    // useContentSize: true,
-    // frame: false,
-    // show: false,
+    // fullscreen: true,
     webPreferences: {
-      // nodeIntegration: false,
-      // contextIsolation: true,
       sandbox: false,
       preload: path.join(__dirname, 'extensionScript.js')
     }
   });
 
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
 
-  win.loadURL('https://youtube.com/tv', {
+  win.loadURL('https://youtube.com/tv#/?env_forceFullAnimation=true', {
     // userAgent: "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/107.0.3239.84 TV Safari/537.36"
     userAgent: "AppleCoreMedia/1.0.0.20L563 (Apple TV; U; CPU OS 16_5 like Mac OS X; en_us)"
+    // userAgent: "Dalvik/2.1.0 (Linux; U; Android 9; AFTSS Build/PS7646.3550N) CTV"
   });
 
 

@@ -1,6 +1,6 @@
 {
   "name": "youtube-smarttv-emu",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "author": "Garrett Corbin <jgarrettcorbin@gmail.com> (https://jgarrettcorbin.com)",
   "main": "dist/index.js",
