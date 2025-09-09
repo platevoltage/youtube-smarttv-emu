@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc --skipLibCheck || true && electron .",
     "sign-dev": "evs-vmp sign-pkg node_modules/electron/dist",
-    "make:linux": "tsc && electron-builder -l --x64 --linux deb rpm",
+    "make:linux": "tsc && electron-builder -l --x64 --linux deb",
     "make:windows": "tsc && electron-builder --w --x64",
     "make:mac": "tsc && electron-builder --m --arm64"
   },
