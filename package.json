@@ -6,9 +6,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc --skipLibCheck || true && electron .",
+    "start": "tsc --skipLibCheck || true && electron . --",
     "sign-dev": "evs-vmp sign-pkg node_modules/electron/dist",
-    "make:linux": "tsc && electron-builder -l --x64 --linux deb",
+    "make:linux": "tsc && electron-builder -l --arm64 --linux appimage",
     "make:windows": "tsc && electron-builder --w --x64",
     "make:mac": "tsc && electron-builder --m --arm64"
   },
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/platevoltage/youtube-smarttv-emu#readme",
   "devDependencies": {
     "deb": "^0.2.1",
-    "electron": "github:castlabs/electron-releases#v34.0.2+wvcus",
+    "electron": "^38.0.0",
     "electron-builder": "^25.1.8",
     "electron-is-dev": "^3.0.1"
   },
@@ -49,9 +49,6 @@
     },
     "mac": {
       "icon": "./youtube.icns"
-    },
-    "electronDownload": {
-      "mirror": "https://github.com/castlabs/electron-releases/releases/download/v"
     },
     "afterSign": "sign.js"
   }

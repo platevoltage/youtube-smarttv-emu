@@ -1,9 +1,116 @@
+import { contextBridge, ipcRenderer } from "electron";
 let interval: NodeJS.Timeout;
 let timeout: NodeJS.Timeout;
 let isHidden = false;
 let expanded = false;
+const additionalArgs = process.argv.pop();
+const swapButtons = additionalArgs.includes("--swap-buttons");
 
+const previous: Record<number, boolean[]> = {};
+
+function typeKey(key, down: boolean) {
+    const target = document.querySelector('input') || document;
+    console.log(key);
+    // Map some common keys to their keyCodes (legacy)
+    const keyCodeMap = {
+        'ArrowDown': 40,
+        'ArrowUp': 38,
+        'ArrowLeft': 37,
+        'ArrowRight': 39,
+        'Enter': 13,
+        'Escape': 27,
+        'Backspace': 8,
+        'Tab': 9,
+        'Space': 32
+        // Add more as needed
+    };
+
+    // const codeMap = {
+    //     'ArrowDown': 'ArrowDown',
+    //     'ArrowUp': 'ArrowUp',
+    //     'ArrowLeft': 'ArrowLeft',
+    //     'ArrowRight': 'ArrowRight',
+    //     'Enter': 'Enter',
+    //     'Escape': 'Escape',
+    //     'Backspace': 'Backspace',
+    //     'Tab': 'Tab',
+
+    //     // Add more as needed
+    // };
+
+    const event = new KeyboardEvent(down ? 'keydown' : 'keyup', {
+        key: key,
+        code: key,
+        keyCode: keyCodeMap[key] || key.toUpperCase().charCodeAt(0),
+        which: keyCodeMap[key] || key.toUpperCase().charCodeAt(0),
+        bubbles: true,
+        cancelable: true
+    });
+
+    target.dispatchEvent(event);
+
+}
+
+// Map buttons/axes to robotjs keys
+function getKey(btn: number, axis?: string): string | null {
+    switch (btn) {
+        case 0: return swapButtons ? "Escape" : "Enter";       // A
+        case 1: return swapButtons ? "Enter" : "Escape";   // B
+        // case 2: return "x";           // X
+        // case 3: return "c";           // Y
+
+        // D-pad buttons
+        case 12: return "ArrowUp";         // DPAD_UP
+        case 13: return "ArrowDown";       // DPAD_DOWN
+        case 14: return "ArrowLeft";       // DPAD_LEFT
+        case 15: return "ArrowRight";      // DPAD_RIGHT
+
+        // Start / Select
+        case 8: return "Backspace";         // Select / Back
+        case 9: return "Space";      // Start
+        default: return null;
+    }
+
+    // For axes (D-pad), you can add axis mapping here if needed
+}
+
+
+function pollGamepads() {
+    const pads = navigator.getGamepads();
+    // console.log(pads)
+    for (const pad of pads) {
+        if (!pad) continue;
+
+        // Initialize previous state array for this pad
+        if (!previous[pad.index]) previous[pad.index] = new Array(pad.buttons.length).fill(false);
+
+        pad.buttons.forEach((btn, idx) => {
+            const wasPressed = previous[pad.index][idx];
+
+            if (btn.pressed && !wasPressed) {
+                const key = getKey(idx);
+                if (key) typeKey(key, true)
+                previous[pad.index][idx] = true;
+            }
+            else if (!btn.pressed && wasPressed) {
+                const key = getKey(idx);
+                if (key) typeKey(key, false)
+                previous[pad.index][idx] = false;
+            }
+        });
+    }
+
+    requestAnimationFrame(pollGamepads);
+}
+
+
+// window.addEventListener("gamepadconnected", (event) => {
+//     console.log("Gamepad connected:", event.gamepad);
+// });
 document.addEventListener('DOMContentLoaded', () => {
+
+    // pollGamepads();
+
     document.addEventListener("mousemove", magicMouse);
     setInterval(() => {
         const container = document.getElementById("container");
