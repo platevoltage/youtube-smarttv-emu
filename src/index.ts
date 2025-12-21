@@ -13,7 +13,7 @@ import * as path from 'path';
 
 
 const args = process.argv.slice(2); // Skip first two args
-const swapButtons = args.includes("--swap-buttons");
+const customUrl = args[0];
 console.log('CLI Arguments:', args);
 
 
@@ -34,7 +34,7 @@ function createWindow() {
 
   // win.webContents.openDevTools();
 
-  win.loadURL('https://youtube.com/tv#/?env_forceFullAnimation=true', {
+  win.loadURL(customUrl || 'https://youtube.com/tv#/?env_forceFullAnimation=true', {
     // userAgent: "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/107.0.3239.84 TV Safari/537.36"
     userAgent: "AppleCoreMedia/1.0.0.20L563 (Apple TV; U; CPU OS 16_5 like Mac OS X; en_us)"
     // userAgent: "Dalvik/2.1.0 (Linux; U; Android 9; AFTSS Build/PS7646.3550N) CTV"
